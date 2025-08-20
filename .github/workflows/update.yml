@@ -2,7 +2,7 @@ name: Update ORU Schedule
 
 on:
   schedule:
-    - cron: "0 1 * * *" 
+    - cron: "0 1 * * *"  
   workflow_dispatch:
 
 jobs:
@@ -17,8 +17,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Clean install dependencies
+        run: |
+          pip uninstall -y ics tatsu || true
+          pip install --no-cache-dir --force-reinstall -r requirements.txt
+
+      - name: Verify installed versions
+        run: pip freeze
 
       - name: Run scraper
         run: python scraper.py
