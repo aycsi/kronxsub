@@ -12,7 +12,7 @@ def fetch_schedule():
     table = soup.find('table', {'class': 'schemaTabell'})
 
     if not table:
-        print("no schedule table found.")
+        print("no schedule table found")
         return []
 
     events = []
@@ -26,12 +26,14 @@ def fetch_schedule():
         title = cells[3].get_text(strip=True)
         location = cells[4].get_text(strip=True)
 
+        if " - " not in time_str:
+            continue
+
         try:
             start_time, end_time = time_str.split(" - ")
             start_dt = datetime.strptime(f"{date_str} {start_time}", '%Y-%m-%d %H:%M')
             end_dt = datetime.strptime(f"{date_str} {end_time}", '%Y-%m-%d %H:%M')
-        except Exception as e:
-            print(f"skipping invalid row: {e}")
+        except:
             continue
 
         event = Event()
@@ -55,6 +57,6 @@ if __name__ == "__main__":
     if events:
         os.makedirs("docs", exist_ok=True)
         generate_ics(events, "docs/oru_schedule.ics")
-        print(f"done {len(events)} events.")
+        print(f"done {len(events)} events")
     else:
-        print("no events.")
+        print("no valid events")
