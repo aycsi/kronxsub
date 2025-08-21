@@ -4,8 +4,7 @@ from ics import Calendar, Event
 from datetime import datetime
 import os
 
-URL = "https://schema.oru.se/setup/jsp/Schema.jsp?startDatum=idag&intervallTyp=m&intervallAntal=12&sokMedAND=true&schemaTyp=SchemaOptimal&forklaringar=true&resurser=k.DT118G-H5016H25-&sprak=SV"
-
+URL = "" 
 def fetch_schedule():
     response = requests.get(URL)
     soup = BeautifulSoup(response.text, 'html.parser')
