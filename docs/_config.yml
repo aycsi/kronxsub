@@ -1,0 +1,5 @@
+exclude:
+  - '*.py'
+  - '*.txt'
+  - scraper.py
+  - requirements.txt

@@ -1,3 +1,9 @@
 ics==0.7
+<<<<<<< HEAD
 beautifulsoup4
 requests
+=======
+tatsu==4.4.0
+requests
+beautifulsoup4
+>>>>>>> 4ea92ee8d8dccf72c0ed59275381f699d854a75a
